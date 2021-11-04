@@ -16,6 +16,8 @@
 pragma solidity >=0.4.23;
 
 contract DSTest {
+    event eventListener          (address target, bool exact);
+
     event log                    (string);
     event logs                   (bytes);
 
@@ -43,6 +45,10 @@ contract DSTest {
 
     modifier mayRevert() { _; }
     modifier testopts(string memory) { _; }
+
+    function expectEventsExact(address target) internal {
+        emit eventListener(target, true);
+    }
 
     function fail() internal {
         failed = true;
